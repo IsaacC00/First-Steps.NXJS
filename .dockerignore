@@ -1,0 +1,10 @@
+# archivo parecido a gitignore
+# ignoramos los modulos de node por que docker 
+# lo va aagregar por nosotros
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+.next
+.git

@@ -1,0 +1,30 @@
+# version pequenia de node pesa menos de 10mb
+FROM node:18-alpine
+
+#directorio en el cual queremos trabajar
+WORKDIR /app
+
+#copiamos el origen y luego el destino
+COPY package.json /
+
+# reconstruimos los modules de node en base el SO
+RUN npm install
+
+#copiamos todo el proyecto y lo movemos a la carpeeta app
+COPY . /
+
+#hacemos el build de produccion
+RUN npm run build
+
+#exponemos el puerto 3000 para que el mundo vea mi imagen de la app 
+EXPOSE 3000
+
+#comando para inicializar mi aplicacion o servidor
+CMD [ "npm","start" ]
+
+#ahora en la terminal esciribimos 
+# para que docker ahaga todo los pasos de este archivo .(para indicar que esta en el root principal)
+# docker build -t 'nombreImagen' .
+
+#para correr nuestra iamgen de docker 
+#docker container run -p 3000:3000 nombre-imagen
